@@ -82,6 +82,12 @@ const idSchema = new mongoose.Schema(
       type: String,
       default: ''      // e.g. "Paloma Bundle, Cobra Bundle"
     },
+    primeLevel: {
+      type: Number,
+      default: 0,
+      min: 0,
+      max: 8        // Free Fire Prime max level is 8
+    },
     contact: {
       type: String,
       required: [true, 'Contact number is required']

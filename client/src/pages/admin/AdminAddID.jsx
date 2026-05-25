@@ -33,6 +33,7 @@ const AdminAddID = () => {
     evoMax:      '',
     allGunSkins: '',
     rareItems:   '',
+    primeLevel:  '',
     featured:    false,
     trending:    false
   });
@@ -180,6 +181,14 @@ const AdminAddID = () => {
               <label>✨ Rare Items</label>
               <input name="rareItems" value={form.rareItems} onChange={handleChange}
                 placeholder="e.g. Paloma Bundle, Cobra Bundle" />
+            </div>
+            <div className="form-group">
+              <label>👑 Prime Level</label>
+              <input name="primeLevel" type="number" value={form.primeLevel} onChange={handleChange}
+                placeholder="0 - 8" min="0" max="8" />
+              <small style={{ color: 'var(--text-muted)', fontSize: '11px', marginTop: '4px', display: 'block' }}>
+                Max level is 8
+              </small>
             </div>
           </div>
 

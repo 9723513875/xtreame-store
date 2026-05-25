@@ -17,8 +17,8 @@ cd client
 npm run dev
 ```
 
-- Frontend: **http://localhost:3000**
 - Backend API: **http://localhost:5000**
+- Frontend: **http://localhost:3000**
 
 ---
 

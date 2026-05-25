@@ -157,6 +157,12 @@ const IDDetail = () => {
                   <span className="meta-value">{gameId.allGunSkins}</span>
                 </div>
               )}
+              {gameId.primeLevel > 0 && (
+                <div className="meta-item">
+                  <span className="meta-label">👑 Prime Level</span>
+                  <span className="meta-value">{gameId.primeLevel}</span>
+                </div>
+              )}
               <div className="meta-item">
                 <span className="meta-label">Views</span>
                 <span className="meta-value"><FiEye /> {gameId.views}</span>
@@ -207,7 +213,7 @@ const IDDetail = () => {
 
             {/* Contact */}
             <div className="id-detail__contact">
-              <h4>Contact Developer</h4>
+              <h4>Contact Owner</h4>
 
               {!isLoggedIn ? (
                 /* Not logged in — show login prompt instead of contact buttons */

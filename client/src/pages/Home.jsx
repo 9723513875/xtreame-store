@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { idsAPI } from '../services/api';
 import IDCard from '../components/IDCard';
 import { FiArrowRight, FiZap, FiShield, FiStar } from 'react-icons/fi';
+import { FaInstagram } from 'react-icons/fa';
 import './Home.css';
 
 const CATEGORIES = [
@@ -171,6 +172,67 @@ const Home = () => {
           </div>
         </section>
       )}
+
+      {/* ─── Owners ───────────────────────────────────────────────────────── */}
+      <section className="owners-section">
+        <div className="container">
+          <div className="owners-header">
+            <span className="owners-badge">👑 THE TEAM</span>
+            <h2 className="section-title">Behind XTREAME STORE</h2>
+            <p className="owners-subtitle">The people who built and run this platform</p>
+          </div>
+
+          <div className="owners-grid">
+
+            {/* Owner 1 — Ayan */}
+            <div className="owner-card glass-card">
+              <div className="owner-card__glow" />
+              <div className="owner-avatar owner-avatar--red">
+                <span>A</span>
+                <div className="owner-avatar__ring" />
+              </div>
+              <div className="owner-info">
+                <h3>Ayan</h3>
+                <span className="owner-role owner-role--dev">⚡ Owner & Developer</span>
+                <p className="owner-desc">Built XTREAME STORE from scratch. Handles development & operations.</p>
+              </div>
+              <a
+                href="https://www.instagram.com/mr_ayan__01_07?igsh=MXZ3djA2OGxsZ3Jveg=="
+                target="_blank"
+                rel="noreferrer"
+                className="owner-insta"
+              >
+                <FaInstagram />
+                <span>Follow on Instagram</span>
+              </a>
+            </div>
+
+            {/* Owner 2 — Varun */}
+            <div className="owner-card glass-card">
+              <div className="owner-card__glow owner-card__glow--gold" />
+              <div className="owner-avatar owner-avatar--gold">
+                <span>V</span>
+                <div className="owner-avatar__ring owner-avatar__ring--gold" />
+              </div>
+              <div className="owner-info">
+                <h3>Varun</h3>
+                <span className="owner-role owner-role--owner">👑 Owner</span>
+                <p className="owner-desc">Co-owner of XTREAME STORE. Manages listings & customer support.</p>
+              </div>
+              <a
+                href="https://www.instagram.com/varun4606yt?igsh=Y3phenVuczBjaWpl"
+                target="_blank"
+                rel="noreferrer"
+                className="owner-insta owner-insta--gold"
+              >
+                <FaInstagram />
+                <span>Follow on Instagram</span>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </section>
 
       {/* ─── CTA ──────────────────────────────────────────────────────────── */}
       <section className="cta-section">
