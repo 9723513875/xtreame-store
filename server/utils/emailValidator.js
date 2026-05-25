@@ -184,7 +184,8 @@ const hasMXRecord = async (domain) => {
     const records = await dns.resolveMx(domain);
     return records && records.length > 0;
   } catch {
-    return false;
+    // DNS lookup failed — assume valid to avoid blocking real emails
+    return true;
   }
 };
 
