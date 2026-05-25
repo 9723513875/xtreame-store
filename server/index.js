@@ -49,8 +49,13 @@ const limiter = rateLimit({
 });
 
 // ─── Middleware ───────────────────────────────────────────────────────────────
-const allowedOrigin = (process.env.CLIENT_URL || 'http://localhost:3000').trim();
-app.use(cors({ origin: allowedOrigin, credentials: true }));
+app.use(cors({
+  origin: function(origin, callback) {
+    // Allow all origins in production (Vercel, mobile, etc.)
+    callback(null, true);
+  },
+  credentials: true
+}));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use('/api', limiter);
