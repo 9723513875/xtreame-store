@@ -41,6 +41,9 @@ checkConfig();
 
 const app = express();
 
+// ─── Trust Proxy (Railway/Render/Vercel ke liye) ──────────────────────────────
+app.set('trust proxy', 1);
+
 // ─── Rate Limiting ────────────────────────────────────────────────────────────
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
