@@ -86,7 +86,7 @@ const IDDetail = () => {
                   <video
                     src={gameId.images[activeImg].url}
                     controls
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    style={{ width: '100%', height: '100%', objectFit: 'contain', background: '#000' }}
                   />
                 ) : (
                   <img src={gameId.images[activeImg].url} alt={gameId.title} />

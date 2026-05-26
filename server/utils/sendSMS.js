@@ -20,7 +20,7 @@ const sendSMS = async (mobile, otp) => {
       'https://www.fast2sms.com/dev/bulkV2',
       {
         route:    'q',
-        message:  `Your XTREAME STORE OTP is: ${otp}. Valid for 10 minutes. Do not share with anyone.`,
+        message:  `Your XTREME STORE OTP is: ${otp}. Valid for 10 minutes. Do not share with anyone.`,
         language: 'english',
         flash:    0,
         numbers:  mobile

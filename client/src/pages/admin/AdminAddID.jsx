@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { adminAPI } from '../../services/api';
 import toast from 'react-hot-toast';
-import { FiUpload, FiX, FiArrowLeft } from 'react-icons/fi';
+import { FiUpload, FiX, FiArrowLeft, FiMove } from 'react-icons/fi';
 import './Admin.css';
 
 const RANKS      = ['Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond', 'Heroic', 'Grandmaster'];
@@ -10,11 +10,14 @@ const CATEGORIES = ['Basic ID', 'Normal ID', 'Best ID', 'Super ID', 'Extreme ID'
 
 const AdminAddID = () => {
   const navigate = useNavigate();
-  const [loading, setLoading]           = useState(false);
+  const [loading, setLoading]             = useState(false);
   const [uploadLoading, setUploadLoading] = useState(false);
   const [uploadedImages, setUploadedImages] = useState([]);
 
-// Fix 1: renamed vault → voucher to match server model
+  // Drag & Drop state
+  const dragIndex   = useRef(null);
+  const dragOverIndex = useRef(null);
+
   const [form, setForm] = useState({
     idName:      '',
     title:       '',
@@ -42,7 +45,6 @@ const AdminAddID = () => {
     const { name, value, type, checked } = e.target;
     const updated = { ...form, [name]: type === 'checkbox' ? checked : value };
 
-    // Auto-update category when price changes
     if (name === 'price' && value) {
       const p = Number(value);
       if (p < 5000)       updated.category = 'Basic ID';
@@ -63,17 +65,71 @@ const AdminAddID = () => {
       const formData = new FormData();
       files.forEach((f) => formData.append('images', f));
       const res = await adminAPI.uploadImages(formData);
-      setUploadedImages([...uploadedImages, ...res.data.images]);
+      setUploadedImages((prev) => [...prev, ...res.data.images]);
       toast.success(`${files.length} file(s) uploaded!`);
     } catch (err) {
       toast.error(err.response?.data?.message || 'Upload failed');
     } finally {
       setUploadLoading(false);
+      // Reset input so same file can be re-uploaded
+      e.target.value = '';
     }
   };
 
   const removeImage = (index) => {
-    setUploadedImages(uploadedImages.filter((_, i) => i !== index));
+    setUploadedImages((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  // ── Drag & Drop handlers ──────────────────────────────────────────────────
+  const handleDragStart = (e, index) => {
+    dragIndex.current = index;
+    e.dataTransfer.effectAllowed = 'move';
+    // Small delay so the ghost image renders before we style the element
+    setTimeout(() => {
+      e.target.closest('.uploaded-img').classList.add('dragging');
+    }, 0);
+  };
+
+  const handleDragEnter = (e, index) => {
+    e.preventDefault();
+    dragOverIndex.current = index;
+    // Highlight drop target
+    document.querySelectorAll('.uploaded-img').forEach((el, i) => {
+      el.classList.toggle('drag-over', i === index && i !== dragIndex.current);
+    });
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+  };
+
+  const handleDrop = (e, index) => {
+    e.preventDefault();
+    const from = dragIndex.current;
+    const to   = index;
+    if (from === null || from === to) return;
+
+    const reordered = [...uploadedImages];
+    const [moved]   = reordered.splice(from, 1);
+    reordered.splice(to, 0, moved);
+    setUploadedImages(reordered);
+
+    // Cleanup
+    document.querySelectorAll('.uploaded-img').forEach((el) => {
+      el.classList.remove('dragging', 'drag-over');
+    });
+    dragIndex.current     = null;
+    dragOverIndex.current = null;
+    toast.success('Order updated! First image is the cover.', { icon: '🖼️', duration: 2000 });
+  };
+
+  const handleDragEnd = () => {
+    document.querySelectorAll('.uploaded-img').forEach((el) => {
+      el.classList.remove('dragging', 'drag-over');
+    });
+    dragIndex.current     = null;
+    dragOverIndex.current = null;
   };
 
   const handleSubmit = async (e) => {
@@ -250,20 +306,55 @@ const AdminAddID = () => {
             </div>
 
             {uploadedImages.length > 0 && (
-              <div className="uploaded-images">
-                {uploadedImages.map((file, i) => (
-                  <div key={i} className="uploaded-img">
-                    {file.type === 'video' ? (
-                      <video src={file.url} muted playsInline
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                    ) : (
-                      <img src={file.url} alt={`Upload ${i + 1}`} />
-                    )}
-                    <span className="media-type-badge">{file.type === 'video' ? '🎥' : '📸'}</span>
-                    <button type="button" onClick={() => removeImage(i)}><FiX /></button>
-                  </div>
-                ))}
-              </div>
+              <>
+                {/* Drag & Drop hint */}
+                <div className="upload-reorder-hint">
+                  <FiMove style={{ fontSize: 13 }} />
+                  Drag to reorder — first image will be the cover photo
+                  <span className="cover-badge">1st = Cover</span>
+                </div>
+
+                <div className="uploaded-images">
+                  {uploadedImages.map((file, i) => (
+                    <div
+                      key={`${file.url}-${i}`}
+                      className={`uploaded-img ${i === 0 ? 'is-cover' : ''}`}
+                      draggable
+                      onDragStart={(e) => handleDragStart(e, i)}
+                      onDragEnter={(e) => handleDragEnter(e, i)}
+                      onDragOver={handleDragOver}
+                      onDrop={(e) => handleDrop(e, i)}
+                      onDragEnd={handleDragEnd}
+                    >
+                      {/* Full preview */}
+                      {file.type === 'video' ? (
+                        <video src={file.url} muted playsInline
+                          style={{ width: '100%', height: '100%', objectFit: 'contain', background: '#000' }} />
+                      ) : (
+                        <img src={file.url} alt={`Upload ${i + 1}`}
+                          style={{ width: '100%', height: '100%', objectFit: 'contain', background: '#000' }} />
+                      )}
+
+                      {/* Cover badge */}
+                      {i === 0 && <span className="cover-label">COVER</span>}
+
+                      {/* Media type badge */}
+                      <span className="media-type-badge">{file.type === 'video' ? '🎥' : '📸'}</span>
+
+                      {/* Drag handle */}
+                      <div className="drag-handle" title="Drag to reorder">
+                        <FiMove />
+                      </div>
+
+                      {/* Remove button */}
+                      <button type="button" className="remove-img-btn" onClick={() => removeImage(i)}
+                        title="Remove">
+                        <FiX />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </>
             )}
           </div>
 

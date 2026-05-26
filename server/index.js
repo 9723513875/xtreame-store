@@ -24,7 +24,7 @@ const checkConfig = () => {
 
   if (issues.length > 0) {
     console.log('\n┌─────────────────────────────────────────────┐');
-    console.log('│         XTREAME STORE — Config Check         │');
+    console.log('│          XTREME STORE — Config Check          │');
     console.log('└─────────────────────────────────────────────┘');
     issues.forEach((i) => console.log(' ' + i));
     console.log('');
@@ -73,7 +73,7 @@ app.use('/api/upload',   require('./routes/upload'));
 
 // ─── Health Check ─────────────────────────────────────────────────────────────
 app.get('/api/health', (req, res) => {
-  res.json({ success: true, message: '🔥 XTREAME STORE API is running!' });
+  res.json({ success: true, message: '🔥 XTREME STORE API is running!' });
 });
 
 // ─── 404 Handler ─────────────────────────────────────────────────────────────
@@ -99,7 +99,7 @@ mongoose
     console.log('✅ MongoDB connected successfully');
     app.listen(PORT, () => {
       console.log(`🚀 Server running on http://localhost:${PORT}`);
-      console.log(`🔥 XTREAME STORE is live!\n`);
+      console.log(`🔥 XTREME STORE is live!\n`);
     });
   })
   .catch((err) => {

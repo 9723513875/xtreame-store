@@ -12,7 +12,7 @@ const sendEmail = async ({ to, subject, html }) => {
   });
 
   const mailOptions = {
-    from: `"XTREAME STORE 🔥" <${process.env.EMAIL_USER}>`,
+    from: `"XTREME STORE 🔥" <${process.env.EMAIL_USER}>`,
     to,
     subject,
     html

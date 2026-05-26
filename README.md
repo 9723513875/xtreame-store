@@ -1,4 +1,4 @@
-# ⚡ XTREAME STORE
+# ⚡ XTREME STORE
 > Premium Free Fire ID Marketplace — Black + Neon Red Gaming Theme
 
 ---

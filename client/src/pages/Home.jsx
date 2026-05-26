@@ -47,7 +47,7 @@ const Home = () => {
           <div className="hero__badge">🔥 #1 Free Fire ID Marketplace</div>
 
           <h1 className="hero-title">
-            <span className="hero__title-x">X</span><span className="hero__title-treame">TREAME</span>
+            <span className="hero__title-x">X</span><span className="hero__title-treame">TREME</span>
             <br />
             <span className="hero__title-store">STORE</span>
           </h1>
@@ -85,7 +85,7 @@ const Home = () => {
         {/* RIGHT SIDE */}
         <div className="hero-right">
           <div className="xtreame-logo-box">
-            <img src="/xtreame-logo.png" alt="XTREAME" />
+            <img src="/xtreame-logo.png" alt="XTREME" />
           </div>
         </div>
 
@@ -178,7 +178,7 @@ const Home = () => {
         <div className="container">
           <div className="owners-header">
             <span className="owners-badge">👑 THE TEAM</span>
-            <h2 className="section-title">Behind XTREAME STORE</h2>
+            <h2 className="section-title">Behind XTREME STORE</h2>
             <p className="owners-subtitle">The people who built and run this platform</p>
           </div>
 
@@ -194,7 +194,7 @@ const Home = () => {
               <div className="owner-info">
                 <h3>Ayan</h3>
                 <span className="owner-role owner-role--dev">⚡ Owner & Developer</span>
-                <p className="owner-desc">Built XTREAME STORE from scratch. Handles development & operations.</p>
+                <p className="owner-desc">Built XTREME STORE from scratch. Handles development & operations.</p>
               </div>
               <a
                 href="https://www.instagram.com/mr_ayan__01_07?igsh=MXZ3djA2OGxsZ3Jveg=="
@@ -217,7 +217,7 @@ const Home = () => {
               <div className="owner-info">
                 <h3>Varun</h3>
                 <span className="owner-role owner-role--owner">👑 Owner</span>
-                <p className="owner-desc">Co-owner of XTREAME STORE. Manages listings & customer support.</p>
+                <p className="owner-desc">Co-owner of XTREME STORE. Manages listings & customer support.</p>
               </div>
               <a
                 href="https://www.instagram.com/varun4606yt?igsh=Y3phenVuczBjaWpl"
@@ -239,7 +239,7 @@ const Home = () => {
         <div className="container">
           <div className="cta-card neon-border">
             <h2>Ready to find your dream Free Fire ID?</h2>
-            <p>Join thousands of gamers who trust XTREAME STORE.</p>
+            <p>Join thousands of gamers who trust XTREME STORE.</p>
             <Link to="/marketplace" className="btn-primary">
               Explore Marketplace <FiArrowRight />
             </Link>

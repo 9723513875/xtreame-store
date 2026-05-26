@@ -26,12 +26,12 @@ const sendOTPEmail = async (email, name, otp, subject = 'Verify Your Email') => 
 
   await sendEmail({
     to: email,
-    subject: `🔥 XTREAME STORE — ${subject}`,
+    subject: `🔥 XTREME STORE — ${subject}`,
     html: `
       <div style="background:#0a0a0a;color:#fff;padding:40px;font-family:Arial,sans-serif;
                   border-radius:12px;max-width:500px;margin:0 auto;border:1px solid #ff003333;">
         <h1 style="color:#ff0033;text-align:center;font-size:26px;letter-spacing:3px;margin-bottom:4px;">
-          ⚡ XTREAME STORE
+          ⚡ XTREME STORE
         </h1>
         <p style="text-align:center;color:#888;margin-bottom:32px;font-size:13px;">Gaming Marketplace</p>
         <h2 style="text-align:center;margin-bottom:8px;">${subject}</h2>
@@ -142,7 +142,7 @@ exports.verifyEmail = async (req, res) => {
 
     res.json({
       success: true,
-      message: '🎉 Email verified! Welcome to XTREAME STORE!',
+      message: '🎉 Email verified! Welcome to XTREME STORE!',
       token,
       user: {
         _id: user._id,
@@ -357,7 +357,7 @@ exports.sendMobileOTP = async (req, res) => {
       // New user — create temp account
       user = await User.create({
         name: `User${mobile.slice(-4)}`,
-        email: `mobile_${mobile}@xtreamestore.temp`,
+        email: `mobile_${mobile}@xtremestore.temp`,
         password: `temp_${otp}_${Date.now()}`,
         mobile,
         emailOTP: otp,
@@ -405,7 +405,7 @@ exports.verifyMobileOTP = async (req, res) => {
 
     res.json({
       success: true,
-      message: '🎉 Mobile verified! Welcome to XTREAME STORE!',
+      message: '🎉 Mobile verified! Welcome to XTREME STORE!',
       token,
       user: {
         _id: user._id,

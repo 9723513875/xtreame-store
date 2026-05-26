@@ -15,7 +15,7 @@ const Footer = () => (
           <span className="logo-wordmark">
             <span className="logo-wordmark-top">
               <span className="logo-x">X</span>
-              <span className="logo-text">TREAME</span>
+              <span className="logo-text">TREME</span>
             </span>
             <span className="logo-store">STORE</span>
           </span>
@@ -53,7 +53,7 @@ const Footer = () => (
     </div>
 
     <div className="footer__bottom">
-      <p>© 2024 XTREAME STORE. All rights reserved. | Built with 🔥</p>
+      <p>© 2024 XTREME STORE. All rights reserved. | Built with 🔥</p>
     </div>
   </footer>
 );

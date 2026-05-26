@@ -55,7 +55,7 @@ const Navbar = () => {
           <span className="logo-wordmark">
             <span className="logo-wordmark-top">
               <span className="logo-x">X</span>
-              <span className="logo-text">TREAME</span>
+              <span className="logo-text">TREME</span>
             </span>
             <span className="logo-store">STORE</span>
           </span>
