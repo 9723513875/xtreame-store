@@ -55,15 +55,17 @@ const IDDetail = () => {
     }
   };
 
-  const whatsappMsg = encodeURIComponent(
+  // Build WhatsApp message — using simple widely-supported emojis
+  const rawMsg =
     `🎮 Hi! I'm interested in this Free Fire ID:\n\n` +
-    `📛 Name: ${gameId?.idName || gameId?.title}\n` +
-    `🆔 UID: ${gameId?.uid}\n` +
+    `👤 Name: ${gameId?.idName || gameId?.title}\n` +
+    `🔢 UID: ${gameId?.uid}\n` +
     `⚡ Level: ${gameId?.level}\n` +
     `🏆 Rank: ${gameId?.rank}\n` +
-    `💰 Price: ₹${gameId?.price?.toLocaleString('en-IN')}\n\n` +
-    `Please confirm availability. Thank you!`
-  );
+    `💰 Price: Rs.${gameId?.price?.toLocaleString('en-IN')}\n\n` +
+    `Please confirm availability. Thank you!`;
+
+  const whatsappMsg = encodeURIComponent(rawMsg);
 
   if (loading) return <div className="loading-screen"><div className="spinner" /></div>;
   if (!gameId) return null;
