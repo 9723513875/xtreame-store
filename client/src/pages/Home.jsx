@@ -61,8 +61,8 @@ const Home = () => {
             <Link to="/marketplace" className="btn-primary">
               Browse IDs <FiArrowRight />
             </Link>
-            <Link to="/register" className="btn-outline">
-              Join Free
+            <Link to="/marketplace" className="btn-outline">
+              Explore Now
             </Link>
           </div>
 

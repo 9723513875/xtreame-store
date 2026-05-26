@@ -78,9 +78,6 @@
 .id-detail__contact h4,
 .contact-section h4 { font-family: var(--font-gaming); font-size: 10px; letter-spacing: 2.5px; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 14px; }
 
-.contact-login-prompt { background: rgba(255, 0, 51, 0.04); border: 1px solid rgba(255, 0, 51, 0.15); border-radius: var(--radius); padding: 20px; }
-.contact-login-prompt p { color: var(--text-secondary); font-size: 14px; text-align: center; font-family: var(--font-ui); }
-
 .contact-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
 
 .contact-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: var(--radius); font-family: var(--font-gaming); font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; transition: var(--transition); flex: 1; justify-content: center; min-width: 140px; }

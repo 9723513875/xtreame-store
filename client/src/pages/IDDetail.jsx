@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { idsAPI, cartAPI, wishlistAPI } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import toast from 'react-hot-toast';
@@ -211,71 +211,52 @@ const IDDetail = () => {
               )}
             </div>
 
-            {/* Contact */}
+            {/* Contact — visible to everyone, no login required */}
             <div className="id-detail__contact">
               <h4>Contact Owner</h4>
+              <div className="contact-buttons">
+                <a
+                  href={`https://wa.me/${gameId.contact}?text=${whatsappMsg}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="contact-btn whatsapp"
+                >
+                  <FaWhatsapp /> WhatsApp
+                </a>
 
-              {!isLoggedIn ? (
-                /* Not logged in — show login prompt instead of contact buttons */
-                <div className="contact-login-prompt">
-                  <p>🔐 Contact details dekhne ke liye login karo</p>
-                  <button
-                    className="btn-primary"
-                    onClick={() => navigate('/login', { state: { from: `/id/${gameId._id}` } })}
-                    style={{ marginTop: '12px', width: '100%', justifyContent: 'center' }}
-                  >
-                    Login to Contact
-                  </button>
-                  <p style={{ textAlign: 'center', marginTop: '10px', fontSize: '13px', color: 'var(--text-muted)' }}>
-                    Don't have account? <Link to="/register" style={{ color: 'var(--primary)' }}>Sign Up Free</Link>
-                  </p>
-                </div>
-              ) : (
-                /* Logged in — show all contact buttons */
-                <div className="contact-buttons">
+                {gameId.contact2 && (
                   <a
-                    href={`https://wa.me/${gameId.contact}?text=${whatsappMsg}`}
+                    href={`https://wa.me/${gameId.contact2}?text=${whatsappMsg}`}
                     target="_blank"
                     rel="noreferrer"
                     className="contact-btn whatsapp"
                   >
-                    <FaWhatsapp /> WhatsApp
+                    <FaWhatsapp /> WhatsApp 2
                   </a>
+                )}
 
-                  {gameId.contact2 && (
-                    <a
-                      href={`https://wa.me/${gameId.contact2}?text=${whatsappMsg}`}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="contact-btn whatsapp"
-                    >
-                      <FaWhatsapp /> WhatsApp 2
-                    </a>
-                  )}
+                {gameId.instagramLink && (
+                  <a
+                    href={gameId.instagramLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="contact-btn instagram"
+                  >
+                    <FaInstagram /> Instagram
+                  </a>
+                )}
 
-                  {gameId.instagramLink && (
-                    <a
-                      href={gameId.instagramLink}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="contact-btn instagram"
-                    >
-                      <FaInstagram /> Instagram
-                    </a>
-                  )}
-
-                  {gameId.whatsappChannel && (
-                    <a
-                      href={gameId.whatsappChannel}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="contact-btn whatsapp-channel"
-                    >
-                      <FaWhatsapp /> WA Channel
-                    </a>
-                  )}
-                </div>
-              )}
+                {gameId.whatsappChannel && (
+                  <a
+                    href={gameId.whatsappChannel}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="contact-btn whatsapp-channel"
+                  >
+                    <FaWhatsapp /> WA Channel
+                  </a>
+                )}
+              </div>
             </div>
           </div>
         </div>
