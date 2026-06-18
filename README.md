@@ -62,9 +62,7 @@ npm run dev
 
 ---
 
-## 🔑 Admin Login
-- Email: `hhhhgggg0628l@gmail.com`
-- Password: `ayan@varun`
+
 - URL: http://localhost:3000/login
 
 ---
@@ -89,8 +87,3 @@ Xtreme_store/
 
 ---
 
-## 🌐 Deploy Karo
-- **Frontend** → Vercel
-- **Backend** → Render
-- **Database** → MongoDB Atlas (already connected)
-- **Images** → Cloudinary (already connected)
